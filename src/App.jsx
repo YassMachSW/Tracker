@@ -6,6 +6,7 @@ import "./App.css";
 const USERS = [
   { id: "316358514", name: "Alaa", phone: "+972502631406", password: "AlaaFa10" },
   { id: "205797673", name: "Jolian", phone: "+972523717287", password: "jolyass" },
+  { id: "123", name: "yassmine", phone: "+972545317545", password: "123" },
 ];
 
 const STORAGE_KEY = "expenses_v1"; // expenses storage
