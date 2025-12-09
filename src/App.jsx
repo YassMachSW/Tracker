@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import logo from "./assets/logo.jpg";
 
 // ----- USERS ARRAY -----
 const USERS = [
@@ -175,7 +176,7 @@ export default function App() {
     <div className="app-expense" dir="rtl">
       <header className="header-expense">
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <img src="/logo.jpg" alt="Logo" className="logo" />
+          <img src={logo} alt="Logo" className="logo" />
           <h1>Expense Tracker - {currentUser.name}</h1>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
