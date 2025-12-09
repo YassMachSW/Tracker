@@ -5,7 +5,7 @@ import "./App.css";
 // This is where you store users manually
 // id: unique id, name: display name, phone: default phone, password: password you give
 const USERS = [
-  { id: "u1", name: "Alice", phone: "0501234567", password: "pass123" },
+  { id: "316358514", name: "Alaa", phone: "0502631406", password: "AlaaFa10" },
   { id: "u2", name: "Bob", phone: "0529876543", password: "secret" },
 ];
 
