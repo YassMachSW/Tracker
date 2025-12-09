@@ -179,13 +179,13 @@ export default function App() {
           <h1>Expense Tracker - {currentUser.name}</h1>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <input
+          <button onClick={handleLogout}>התנתק</button><input
             type="text"
             placeholder="מספר לשליחת WhatsApp"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
-          <button onClick={handleLogout}>התנתק</button>
+          
         </div>
       </header>
 
