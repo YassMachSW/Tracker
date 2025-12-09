@@ -205,3 +205,8 @@ html, body, #root { height: 100%; font-family: var(--font); background: var(--bg
   height: 50px;     /* keep aspect ratio if needed */
   object-fit: contain;
 }
+.header-expense > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* space between items */
+}
