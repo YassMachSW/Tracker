@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./assets/logo.jpg";
+import whatsappIcon from "./assets/whatsapp.png";
+import websiteIcon from "./assets/logo.jpg";
 
 // ----- USERS ARRAY -----
 const USERS = [
@@ -288,8 +290,32 @@ export default function App() {
       </main>
 
       <footer className="footer-expense">
-        <div>Created by <strong>Deligh-Tech</strong></div>
-      </footer>
+  <div className="footer-content">
+    <span>Created by <strong>Deligh-Tech</strong></span>
+    <div className="footer-icons">
+      {/* WhatsApp link */}
+      <a
+        href="https://wa.me/972545317545?text=I'm%20contacting%20from%20the%20expense%20feature"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Contact via WhatsApp"
+      >
+        <img src={whatsappIcon} alt="WhatsApp" className="footer-icon" />
+      </a>
+
+      {/* Deligh-Tech website link */}
+      <a
+        href="https://deligh-tech.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Visit Deligh-Tech"
+      >
+        <img src={websiteIcon} alt="Deligh-Tech" className="footer-icon" />
+      </a>
+    </div>
+  </div>
+</footer>
+
     </div>
   );
 }
