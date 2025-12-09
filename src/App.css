@@ -8,11 +8,12 @@
   --warning: #f59e0b;
   --text: #111827;
   --input-bg: #f9fafb;
-  --shadow: rgba(0, 0, 0, 0.05);
+  --shadow: rgba(0, 0, 0, 0.08);
+  --font: 'Inter', system-ui, Arial, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); }
+html, body, #root { height: 100%; font-family: var(--font); background: var(--bg); color: var(--text); }
 
 /* APP CONTAINER */
 .app-expense {
@@ -26,9 +27,9 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   background: var(--card);
-  box-shadow: 0 2px 8px var(--shadow);
+  box-shadow: 0 3px 10px var(--shadow);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -39,31 +40,19 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
   font-weight: 600;
 }
 
-.header-expense button {
-  background: var(--accent);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.header-expense button:hover {
-  background: #0284c7;
-}
-
 .phone-settings input {
-  padding: 0.5rem 0.75rem;
+  padding: 0.4rem 0.75rem;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
   background: var(--input-bg);
-  width: 250px;
+  width: 200px;
+  font-size: 0.95rem;
 }
 
 /* MAIN GRID */
 .main-expense {
   flex: 1;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -71,28 +60,34 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
 
 @media(min-width: 900px){
   .main-expense {
-    grid-template-columns: 360px 1fr;
+    grid-template-columns: 320px 1fr;
+    padding: 2rem;
   }
 }
 
 /* CARD */
 .card {
   background: var(--card);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 8px 20px var(--shadow);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 22px var(--shadow);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
 }
 
 /* REMINDER */
 .reminder {
   background: #fff9f2;
   border-left: 4px solid var(--warning);
-  padding: 1rem;
-  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .reminder p {
@@ -100,11 +95,12 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
 }
 
 .reminder-actions button {
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
   transition: 0.2s;
+  font-size: 0.9rem;
 }
 
 .reminder-actions button:first-child {
@@ -126,17 +122,16 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
 .expense-form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .expense-form input[type="number"],
 .expense-form input[type="text"] {
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 10px;
   border: 1px solid #e5e7eb;
   background: var(--input-bg);
-  font-size: 1rem;
-  transition: 0.2s;
+  font-size: 0.95rem;
 }
 
 .expense-form input:focus {
@@ -146,10 +141,11 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
 
 /* FORM BUTTONS */
 .expense-form button {
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  font-size: 0.95rem;
   transition: 0.2s;
 }
 
@@ -174,25 +170,27 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .report-header select {
-  padding: 0.5rem 0.75rem;
+  padding: 0.45rem 0.75rem;
   border-radius: 10px;
   border: 1px solid #e5e7eb;
   background: var(--input-bg);
+  font-size: 0.95rem;
 }
 
 .btn-send {
   background: #25D366;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 10px;
   cursor: pointer;
   transition: 0.2s;
+  font-size: 0.95rem;
 }
 .btn-send:hover {
   background: #1ebe57;
@@ -202,36 +200,38 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
 .list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .expense-item {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0.75rem;
   border-bottom: 1px solid #f3f4f6;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
 }
 
 .amount {
   font-weight: 700;
   color: var(--text);
+  font-size: 1rem;
 }
 
 .reason {
   color: var(--muted);
   font-weight: 500;
+  font-size: 0.95rem;
 }
 
 .notes {
   color: var(--muted);
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
 }
 
 .date {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--muted);
 }
 
@@ -241,6 +241,7 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
   color: var(--danger);
   cursor: pointer;
   transition: 0.2s;
+  font-size: 0.9rem;
 }
 .delete:hover {
   color: #b91c1c;
@@ -251,19 +252,23 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
   text-align: center;
   padding: 1rem;
   margin-top: auto;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   background: rgba(255,255,255,0.95);
   border-top: 1px solid #e5e7eb;
 }
 
-/* LOGIN SCREEN */
+/* LOGIN SCREEN CENTERED */
 .login-screen {
-  max-width: 400px;
-  margin: 100px auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 380px;
+  width: 90%;
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: 16px;
   background-color: var(--card);
-  box-shadow: 0 8px 20px var(--shadow);
+  box-shadow: 0 10px 30px var(--shadow);
   text-align: center;
 }
 
@@ -276,10 +281,11 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
 .login-screen input {
   display: block;
   width: 90%;
-  margin: 10px auto;
-  padding: 0.75rem 1rem;
+  margin: 0.5rem auto;
+  padding: 0.5rem 0.75rem;
   border-radius: 10px;
   border: 1px solid #e5e7eb;
+  font-size: 0.95rem;
   background: var(--input-bg);
 }
 
@@ -289,14 +295,14 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
 }
 
 .login-screen button {
-  padding: 0.6rem 1rem;
+  padding: 0.55rem 1rem;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   background: var(--accent);
   color: white;
   margin-top: 0.5rem;
-  transition: 0.2s;
+  font-size: 0.95rem;
 }
 
 .login-screen button:hover {
@@ -310,13 +316,17 @@ html, body, #root { height: 100%; font-family: 'Inter', system-ui, Arial, sans-s
 }
 
 /* RESPONSIVE */
-@media(max-width: 899px){
-  .report-header {
-    flex-direction: column;
-    align-items: flex-start;
+@media(max-width: 599px){
+  .expense-form input[type="number"],
+  .expense-form input[type="text"] {
+    font-size: 0.9rem;
+    padding: 0.45rem 0.6rem;
   }
-  .btn-send {
-    width: 100%;
-    margin-top: 0.5rem;
+  .btn-primary, .btn-secondary, .btn-send {
+    font-size: 0.9rem;
+    padding: 0.45rem 0.7rem;
+  }
+  .header-expense h1 {
+    font-size: 1.25rem;
   }
 }
