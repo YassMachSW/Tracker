@@ -10,7 +10,7 @@ import "./App.css";
 
 const STORAGE_KEY = "my_expenses_v1";
 const LAST_SENT_KEY = "my_expenses_last_sent_month";
-const USER_PHONE_KEY = "my_expenses_user_phone"; // <-- new
+const USER_PHONE_KEY = "my_expenses_user_phone"; // phone storage key
 
 const FIXED_WHATSAPP_MESSAGE_PREFIX = "סיכום הוצאות לחודש";
 
@@ -51,20 +51,20 @@ export default function App() {
   const [selectedMonth, setSelectedMonth] = useState(monthKeyFromDate());
   const [showMonthlyReminder, setShowMonthlyReminder] = useState(false);
 
-  // NEW — user phone state
+  // Phone number
   const [phone, setPhone] = useState(localStorage.getItem(USER_PHONE_KEY) || "");
 
-  // save phone when changed
+  // Save phone to storage
   useEffect(() => {
     localStorage.setItem(USER_PHONE_KEY, phone);
   }, [phone]);
 
-  // persist whenever expenses change
+  // Save expenses on change
   useEffect(() => {
     saveExpenses(expenses);
   }, [expenses]);
 
-  // check month rollover on load
+  // Check for new month
   useEffect(() => {
     const lastSent = localStorage.getItem(LAST_SENT_KEY);
     const nowMonth = monthKeyFromDate();
@@ -125,7 +125,6 @@ export default function App() {
     }
 
     const cleanedPhone = phone.replace(/[^0-9]/g, "");
-
     const m = monthToSend || selectedMonth;
     const total = totalForMonth(m);
     const [yr, mon] = m.split("-");
@@ -182,7 +181,7 @@ export default function App() {
       <header className="header-expense">
         <h1>Expense Tracker</h1>
 
-        {/* NEW - phone input */}
+        {/* PHONE INPUT */}
         <div className="phone-settings">
           <input
             type="text"
@@ -219,6 +218,7 @@ export default function App() {
           </div>
         )}
 
+        {/* Add Expense Form */}
         <section className="form-section card">
           <h2>הזן הוצאה חדשה</h2>
           <form onSubmit={addExpense} className="expense-form">
@@ -262,6 +262,7 @@ export default function App() {
           </form>
         </section>
 
+        {/* Monthly Report */}
         <section className="report-section card">
           <div className="report-header">
             <h2>דוח חודשי</h2>
