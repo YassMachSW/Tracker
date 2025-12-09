@@ -6,8 +6,9 @@ import websiteIcon from "./assets/logo.jpg";
 
 // ----- USERS ARRAY -----
 const USERS = [
-  { id: "316358514", name: "Alaa", phone: "+972502631406", password: "AlaaFa10" },
+  { id: "316358514", name: "Alaa Shafie", phone: "+972502631406", password: "AlaaFa10" },
   { id: "205797673", name: "Jolian", phone: "+972523717287", password: "jolyass" },
+  { id: "316358522", name: "Walaa Fakeeh", phone: "+972502631423", password: "wafj522" },
   { id: "123", name: "yassmine", phone: "+972545317545", password: "123" },
 ];
 
