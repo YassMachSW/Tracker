@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 
 // ----- USERS ARRAY -----
-// This is where you store users manually
 // id: unique id, name: display name, phone: default phone, password: password you give
 const USERS = [
   { id: "316358514", name: "Alaa", phone: "+972502631406", password: "AlaaFa10" },
@@ -12,8 +11,6 @@ const USERS = [
 const STORAGE_KEY = "expenses_v1"; // expenses storage
 const LAST_SENT_KEY = "last_sent_month"; // last sent month
 const USER_PHONE_KEY = "user_phone"; // user phone
-const CURRENT_USER_KEY = "current_user_logged_in"; // tracks currently logged in user
-
 const FIXED_WHATSAPP_MESSAGE_PREFIX = "סיכום הוצאות לחודש";
 
 export default function App() {
@@ -43,18 +40,8 @@ export default function App() {
       return;
     }
 
-    // Check if this user is already logged in elsewhere
-    const loggedInUser = localStorage.getItem(CURRENT_USER_KEY);
-    if (loggedInUser && loggedInUser !== user.id) {
-      setLoginError(
-        "משתמש זה כבר מחובר במכשיר אחר, נא המתן או התנתק שם."
-      );
-      return;
-    }
-
     // Set current user
     setCurrentUser(user);
-    localStorage.setItem(CURRENT_USER_KEY, user.id);
 
     // Load user-specific expenses
     const stored = localStorage.getItem(`${STORAGE_KEY}_${user.id}`);
@@ -67,13 +54,11 @@ export default function App() {
   }
 
   function handleLogout() {
-    if (currentUser) {
-      localStorage.removeItem(CURRENT_USER_KEY); // free user for other devices
-      setCurrentUser(null);
-      setUsername("");
-      setPassword("");
-      setExpenses([]);
-    }
+    setCurrentUser(null);
+    setUsername("");
+    setPassword("");
+    setExpenses([]);
+    setPhone("");
   }
 
   // ---------- EXPENSE FUNCTIONS ----------
@@ -88,7 +73,8 @@ export default function App() {
   }, [phone, currentUser]);
 
   useEffect(() => {
-    const lastSent = localStorage.getItem(`${LAST_SENT_KEY}_${currentUser?.id}`);
+    if (!currentUser) return;
+    const lastSent = localStorage.getItem(`${LAST_SENT_KEY}_${currentUser.id}`);
     const nowMonth = monthKeyFromDate();
     if (lastSent && lastSent !== nowMonth) setShowMonthlyReminder(true);
     else setShowMonthlyReminder(false);
