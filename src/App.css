@@ -133,3 +133,29 @@ html,body,#root { height: 100%; margin: 0; font-family: system-ui, Arial, sans-s
   .report-header { flex-direction:column; align-items:flex-start; gap:0.5rem; }
   .btn-send { width:100%; margin-left:0; }
 }
+
+.login-screen {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+.login-screen input {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 0.5rem;
+}
+
+.login-screen button {
+  padding: 0.5rem 1rem;
+}
+
+.login-screen .error {
+  color: red;
+  margin-top: 0.5rem;
+}
