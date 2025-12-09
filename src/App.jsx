@@ -5,12 +5,12 @@ import "./App.css";
  * Expense tracker with:
  * - User-defined WhatsApp phone number saved to localStorage.
  * - Monthly expense summary sent through WhatsApp.
- * - No fixed number — user enters their own.
+ * - User controls the phone number.
  */
 
 const STORAGE_KEY = "my_expenses_v1";
 const LAST_SENT_KEY = "my_expenses_last_sent_month";
-const USER_PHONE_KEY = "my_expenses_user_phone"; // phone storage key
+const USER_PHONE_KEY = "my_expenses_user_phone";
 
 const FIXED_WHATSAPP_MESSAGE_PREFIX = "סיכום הוצאות לחודש";
 
@@ -51,20 +51,17 @@ export default function App() {
   const [selectedMonth, setSelectedMonth] = useState(monthKeyFromDate());
   const [showMonthlyReminder, setShowMonthlyReminder] = useState(false);
 
-  // Phone number
+  // phone storage
   const [phone, setPhone] = useState(localStorage.getItem(USER_PHONE_KEY) || "");
 
-  // Save phone to storage
   useEffect(() => {
     localStorage.setItem(USER_PHONE_KEY, phone);
   }, [phone]);
 
-  // Save expenses on change
   useEffect(() => {
     saveExpenses(expenses);
   }, [expenses]);
 
-  // Check for new month
   useEffect(() => {
     const lastSent = localStorage.getItem(LAST_SENT_KEY);
     const nowMonth = monthKeyFromDate();
@@ -139,7 +136,7 @@ export default function App() {
     localStorage.setItem(LAST_SENT_KEY, monthKeyFromDate());
     setShowMonthlyReminder(false);
 
-    alert("נפתח חלון WhatsApp לשליחה. אנא אשר ושלח בתוך WhatsApp.");
+    alert("נפתח חלון WhatsApp — אנא שלח מתוך WhatsApp.");
   }
 
   function groupedExpensesForMonth(monthKey) {
@@ -181,7 +178,6 @@ export default function App() {
       <header className="header-expense">
         <h1>Expense Tracker</h1>
 
-        {/* PHONE INPUT */}
         <div className="phone-settings">
           <input
             type="text"
@@ -195,16 +191,13 @@ export default function App() {
       <main className="main-expense">
         {showMonthlyReminder && (
           <div className="reminder">
-            <p>
-              זיהינו חודש חדש — האם לשלוח את סיכום ההוצאות של החודש הקודם ל-WhatsApp?
-            </p>
+            <p>חודש חדש — לשלוח סיכום הוצאות לחודש הקודם?</p>
             <div className="reminder-actions">
               <button
                 onClick={() =>
                   handleSendMonthly(
-                    prompt(
-                      "איזה חודש לשלוח? הזן בפורמט YYYY-MM או השאר ריק לשליחת החודש האחרון"
-                    ) || undefined
+                    prompt("הכנס YYYY-MM או השאר ריק לשליחת החודש האחרון") ||
+                      undefined
                   )
                 }
               >
@@ -218,7 +211,6 @@ export default function App() {
           </div>
         )}
 
-        {/* Add Expense Form */}
         <section className="form-section card">
           <h2>הזן הוצאה חדשה</h2>
           <form onSubmit={addExpense} className="expense-form">
@@ -247,6 +239,7 @@ export default function App() {
               <button type="submit" className="btn-primary">
                 הוסף
               </button>
+
               <button
                 type="button"
                 className="btn-secondary"
@@ -262,7 +255,6 @@ export default function App() {
           </form>
         </section>
 
-        {/* Monthly Report */}
         <section className="report-section card">
           <div className="report-header">
             <h2>דוח חודשי</h2>
@@ -283,18 +275,18 @@ export default function App() {
                 className="btn-send"
                 onClick={() => handleSendMonthly(selectedMonth)}
               >
-                שלח סיכום לחודש זה ל-WhatsApp
+                שלח סיכום ל-WhatsApp
               </button>
             </div>
           </div>
 
           <div className="total">
-            סה"כ הוצאות: ₪ {formatCurrency(totalForMonth(selectedMonth))}
+            סה\"כ הוצאות: ₪ {formatCurrency(totalForMonth(selectedMonth))}
           </div>
 
           <div className="list">
             {groupedExpensesForMonth(selectedMonth).length === 0 && (
-              <p>לא נמצאו הוצאות בחודש זה.</p>
+              <p>אין הוצאות לחודש זה.</p>
             )}
 
             {groupedExpensesForMonth(selectedMonth).map((it) => (
@@ -309,7 +301,10 @@ export default function App() {
                   <div className="date">
                     {new Date(it.dateISO).toLocaleString()}
                   </div>
-                  <button className="delete" onClick={() => removeExpense(it.id)}>
+                  <button
+                    className="delete"
+                    onClick={() => removeExpense(it.id)}
+                  >
                     מחק
                   </button>
                 </div>
