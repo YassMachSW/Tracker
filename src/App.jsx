@@ -291,7 +291,7 @@ export default function App() {
 
       <footer className="footer-expense">
   <div className="footer-content">
-    <span>Created by <strong>Deligh-Tech</strong></span>
+    <span>Created by <strong>Deligh-Tech</strong></span><br/>
     <div className="footer-icons">
       {/* WhatsApp link */}
       <a
