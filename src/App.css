@@ -200,3 +200,8 @@ html, body, #root { height: 100%; font-family: var(--font); background: var(--bg
   .header-expense h1 { font-size: 1.25rem; }
   .header-expense { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
+.logo {
+  width: 50px;      /* adjust as needed */
+  height: 50px;     /* keep aspect ratio if needed */
+  object-fit: contain;
+}
