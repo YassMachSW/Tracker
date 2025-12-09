@@ -13,7 +13,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body, #root { height: 100%; font-family: var(--font); background: var(--bg); color: var(--text); }
+html, body, #root { height: 100%; font-family: var(--font); background: var(--bg); color: var(--text); direction: rtl; }
 
 /* APP CONTAINER */
 .app-expense {
@@ -33,6 +33,7 @@ html, body, #root { height: 100%; font-family: var(--font); background: var(--bg
   position: sticky;
   top: 0;
   z-index: 10;
+  gap: 1rem;
 }
 
 .header-expense h1 {
@@ -40,13 +41,18 @@ html, body, #root { height: 100%; font-family: var(--font); background: var(--bg
   font-weight: 600;
 }
 
-.phone-settings input {
+.header-expense .phone-settings input {
   padding: 0.4rem 0.75rem;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
   background: var(--input-bg);
-  width: 200px;
+  width: 180px;
   font-size: 0.95rem;
+}
+
+/* Logo */
+.logo {
+  height: 40px;
 }
 
 /* MAIN GRID */
@@ -107,16 +113,9 @@ html, body, #root { height: 100%; font-family: var(--font); background: var(--bg
   background: var(--accent);
   color: white;
 }
-.reminder-actions button:first-child:hover {
-  background: #0284c7;
-}
-
-.reminder-actions button:last-child {
-  background: #e5e7eb;
-}
-.reminder-actions button:last-child:hover {
-  background: #d1d5db;
-}
+.reminder-actions button:first-child:hover { background: #0284c7; }
+.reminder-actions button:last-child { background: #e5e7eb; }
+.reminder-actions button:last-child:hover { background: #d1d5db; }
 
 /* FORM */
 .expense-form {
@@ -134,36 +133,14 @@ html, body, #root { height: 100%; font-family: var(--font); background: var(--bg
   font-size: 0.95rem;
 }
 
-.expense-form input:focus {
-  border-color: var(--accent);
-  outline: none;
-}
+.expense-form input:focus { border-color: var(--accent); outline: none; }
 
 /* FORM BUTTONS */
-.expense-form button {
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: 0.2s;
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: white;
-}
-.btn-primary:hover {
-  background: #0284c7;
-}
-
-.btn-secondary {
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-}
-.btn-secondary:hover {
-  background: #e5e7eb;
-}
+.expense-form button { padding: 0.5rem 1rem; border-radius: 10px; border: none; cursor: pointer; font-size: 0.95rem; transition: 0.2s; }
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: #0284c7; }
+.btn-secondary { background: #f3f4f6; border: 1px solid #e5e7eb; }
+.btn-secondary:hover { background: #e5e7eb; }
 
 /* REPORT */
 .report-header {
@@ -192,141 +169,34 @@ html, body, #root { height: 100%; font-family: var(--font); background: var(--bg
   transition: 0.2s;
   font-size: 0.95rem;
 }
-.btn-send:hover {
-  background: #1ebe57;
-}
+.btn-send:hover { background: #1ebe57; }
 
 /* EXPENSE LIST */
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.expense-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.75rem;
-  border-bottom: 1px solid #f3f4f6;
-  padding-bottom: 0.4rem;
-}
-
-.amount {
-  font-weight: 700;
-  color: var(--text);
-  font-size: 1rem;
-}
-
-.reason {
-  color: var(--muted);
-  font-weight: 500;
-  font-size: 0.95rem;
-}
-
-.notes {
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin-top: 0.2rem;
-}
-
-.date {
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-.delete {
-  background: transparent;
-  border: none;
-  color: var(--danger);
-  cursor: pointer;
-  transition: 0.2s;
-  font-size: 0.9rem;
-}
-.delete:hover {
-  color: #b91c1c;
-}
+.list { display: flex; flex-direction: column; gap: 0.5rem; }
+.expense-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; border-bottom: 1px solid #f3f4f6; padding-bottom: 0.4rem; }
+.amount { font-weight: 700; color: var(--text); font-size: 1rem; }
+.reason { color: var(--muted); font-weight: 500; font-size: 0.95rem; }
+.notes { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+.date { font-size: 0.8rem; color: var(--muted); }
+.delete { background: transparent; border: none; color: var(--danger); cursor: pointer; transition: 0.2s; font-size: 0.9rem; }
+.delete:hover { color: #b91c1c; }
 
 /* FOOTER */
-.footer-expense {
-  text-align: center;
-  padding: 1rem;
-  margin-top: auto;
-  font-size: 0.85rem;
-  background: rgba(255,255,255,0.95);
-  border-top: 1px solid #e5e7eb;
-}
+.footer-expense { text-align: center; padding: 1rem; margin-top: auto; font-size: 0.85rem; background: rgba(255,255,255,0.95); border-top: 1px solid #e5e7eb; }
 
-/* LOGIN SCREEN CENTERED */
-.login-screen {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 380px;
-  width: 90%;
-  padding: 2rem;
-  border-radius: 16px;
-  background-color: var(--card);
-  box-shadow: 0 10px 30px var(--shadow);
-  text-align: center;
-}
-
-.login-screen h2 {
-  margin-bottom: 1rem;
-  font-weight: 600;
-  color: var(--accent);
-}
-
-.login-screen input {
-  display: block;
-  width: 90%;
-  margin: 0.5rem auto;
-  padding: 0.5rem 0.75rem;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  font-size: 0.95rem;
-  background: var(--input-bg);
-}
-
-.login-screen input:focus {
-  border-color: var(--accent);
-  outline: none;
-}
-
-.login-screen button {
-  padding: 0.55rem 1rem;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  background: var(--accent);
-  color: white;
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-}
-
-.login-screen button:hover {
-  background: #0284c7;
-}
-
-.login-screen .error {
-  color: var(--danger);
-  margin-top: 0.5rem;
-  font-weight: 500;
-}
+/* LOGIN SCREEN */
+.login-screen { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 380px; width: 90%; padding: 2rem; border-radius: 16px; background-color: var(--card); box-shadow: 0 10px 30px var(--shadow); text-align: center; }
+.login-screen h2 { margin-bottom: 1rem; font-weight: 600; color: var(--accent); }
+.login-screen input { display: block; width: 90%; margin: 0.5rem auto; padding: 0.5rem 0.75rem; border-radius: 10px; border: 1px solid #e5e7eb; font-size: 0.95rem; background: var(--input-bg); }
+.login-screen input:focus { border-color: var(--accent); outline: none; }
+.login-screen button { padding: 0.55rem 1rem; border-radius: 10px; border: none; cursor: pointer; background: var(--accent); color: white; margin-top: 0.5rem; font-size: 0.95rem; }
+.login-screen button:hover { background: #0284c7; }
+.login-screen .error { color: var(--danger); margin-top: 0.5rem; font-weight: 500; }
 
 /* RESPONSIVE */
 @media(max-width: 599px){
-  .expense-form input[type="number"],
-  .expense-form input[type="text"] {
-    font-size: 0.9rem;
-    padding: 0.45rem 0.6rem;
-  }
-  .btn-primary, .btn-secondary, .btn-send {
-    font-size: 0.9rem;
-    padding: 0.45rem 0.7rem;
-  }
-  .header-expense h1 {
-    font-size: 1.25rem;
-  }
+  .expense-form input[type="number"], .expense-form input[type="text"] { font-size: 0.9rem; padding: 0.45rem 0.6rem; }
+  .btn-primary, .btn-secondary, .btn-send { font-size: 0.9rem; padding: 0.45rem 0.7rem; }
+  .header-expense h1 { font-size: 1.25rem; }
+  .header-expense { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }

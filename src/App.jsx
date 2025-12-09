@@ -2,23 +2,22 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 
 // ----- USERS ARRAY -----
-// id: unique id, name: display name, phone: default phone, password: password you give
 const USERS = [
   { id: "316358514", name: "Alaa", phone: "+972502631406", password: "AlaaFa10" },
   { id: "205797673", name: "Jolian", phone: "+972523717287", password: "jolyass" },
   { id: "123", name: "yassmine", phone: "+972545317545", password: "123" },
 ];
 
-const STORAGE_KEY = "expenses_v1"; // expenses storage
-const LAST_SENT_KEY = "last_sent_month"; // last sent month
-const USER_PHONE_KEY = "user_phone"; // user phone
+const STORAGE_KEY = "expenses_v1";
+const LAST_SENT_KEY = "last_sent_month";
+const USER_PHONE_KEY = "user_phone";
 const FIXED_WHATSAPP_MESSAGE_PREFIX = "סיכום הוצאות לחודש";
 
 export default function App() {
   // ----- LOGIN STATES -----
-  const [currentUser, setCurrentUser] = useState(null); // stores logged-in user object
-  const [username, setUsername] = useState(""); // id for login
-  const [password, setPassword] = useState(""); // password for login
+  const [currentUser, setCurrentUser] = useState(null);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
 
   // ----- EXPENSE STATES -----
@@ -41,7 +40,6 @@ export default function App() {
       return;
     }
 
-    // Set current user
     setCurrentUser(user);
 
     // Load user-specific expenses
@@ -50,8 +48,7 @@ export default function App() {
 
     // Load user phone
     const storedPhone = localStorage.getItem(`${USER_PHONE_KEY}_${user.id}`);
-    if (storedPhone) setPhone(storedPhone);
-    else setPhone(user.phone);
+    setPhone(storedPhone || user.phone);
   }
 
   function handleLogout() {
@@ -77,8 +74,7 @@ export default function App() {
     if (!currentUser) return;
     const lastSent = localStorage.getItem(`${LAST_SENT_KEY}_${currentUser.id}`);
     const nowMonth = monthKeyFromDate();
-    if (lastSent && lastSent !== nowMonth) setShowMonthlyReminder(true);
-    else setShowMonthlyReminder(false);
+    setShowMonthlyReminder(lastSent && lastSent !== nowMonth);
     setSelectedMonth(nowMonth);
   }, [currentUser]);
 
@@ -153,7 +149,7 @@ export default function App() {
   // ---------- RENDER ----------
   if (!currentUser) {
     return (
-      <div className="login-screen">
+      <div className="login-screen" dir="rtl">
         <h2>כניסה למערכת</h2>
         <form onSubmit={handleLogin}>
           <input
@@ -175,19 +171,21 @@ export default function App() {
     );
   }
 
-  // EXPENSE TRACKER
   return (
-    <div className="app-expense">
+    <div className="app-expense" dir="rtl">
       <header className="header-expense">
-        <h1>Expense Tracker - {currentUser.name}</h1>
-        <button onClick={handleLogout}>התנתק</button>
-        <div className="phone-settings">
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+          <img src="/logo.png" alt="Logo" className="logo" />
+          <h1>Expense Tracker - {currentUser.name}</h1>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
           <input
             type="text"
             placeholder="מספר לשליחת WhatsApp"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
+          <button onClick={handleLogout}>התנתק</button>
         </div>
       </header>
 
@@ -287,6 +285,7 @@ export default function App() {
           </div>
         </section>
       </main>
+
       <footer className="footer-expense">
         <div>Created by <strong>Deligh-Tech</strong></div>
       </footer>
