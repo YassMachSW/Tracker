@@ -175,7 +175,7 @@ export default function App() {
     <div className="app-expense" dir="rtl">
       <header className="header-expense">
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <img src="/logo.png" alt="Logo" className="logo" />
+          <img src="/logo.jpg" alt="Logo" className="logo" />
           <h1>Expense Tracker - {currentUser.name}</h1>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
