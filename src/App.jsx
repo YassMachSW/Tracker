@@ -10,6 +10,7 @@ const USERS = [
   { id: "205797673", name: "Jolian", phone: "+972523717287", password: "jolyass" },
   { id: "316358522", name: "Walaa Fakeeh", phone: "+972502631423", password: "wafj522" },
   { id: "208858183", name: "yassmine", phone: "+972545317545", password: "58183" },
+  { id: "200775401", name: "salem", phone: "+972525495726", password: "2508" },
 ];
 
 const STORAGE_KEY = "expenses_v1";
